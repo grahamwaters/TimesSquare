@@ -1,31 +1,17 @@
-# TimesSquare
-Using CLIP and Sentiment of Drudge, and other sources, for Generative Art.
-
-Import the necessary libraries for this project, including the requests library for downloading the HTML file and the NLTK library for sentiment analysis.
-
-Define a function for downloading the HTML file from the Drudge website. This function should take the URL of the website as an input and return the HTML content as a string.
-
-Define a class for the Drudge website data. This class should have attributes for the HTML content, a list of article titles, and a list of article sentiments (calculated using NLTK).
-
-Define a method in the Drudge class for parsing the HTML content and extracting the article titles. This method should store the titles in the appropriate attribute of the class.
-
-Define a method in the Drudge class for calculating the sentiment of each article title using NLTK. This method should store the sentiments in the appropriate attribute of the class.
-
-Define a method in the Drudge class for generating the waffle chart. This method should take the size of the chart as an input and use the sentiments of the articles to color each square in the chart.
-
-Create an instance of the Drudge class and download the HTML content from the website.
-Use the methods of the class to parse the HTML, calculate the sentiments of the articles, and generate the waffle chart.
-
-Display the waffle chart using a plotting library such as matplotlib.
-
-```python
 # Import the necessary libraries
 import requests
 import nltk
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from PIL import Image
-from openai import CLIP
+import openai
+import io
+# get clip from openai
+clip = openai.CLIP()
 
+
+# conda install -c conda-forge nltk requests pillow openai # Install the necessary libraries
+# pip install -r https://raw.githubusercontent.com/openai/openai/master/requirements.txt
+# to install all dependencies for the OpenAI library
 # Define a function for downloading the HTML file from the Drudge website
 def download_html(url):
     response = requests.get(url)
@@ -91,4 +77,3 @@ image = drudge.generate_waffle_chart(100)
 
 # Display the waffle chart
 image.show()
-```
